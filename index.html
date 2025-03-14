@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emetrics - Carbon Accounting Made Simple</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --emetrics-green: #3A865C;
+            --emetrics-blue: #1A5F7A;
+            --bright-orange: #F19D06;
+            --bright-mango: #FFB822;
+            --moonrock: #958A84;
+            --deep-teal: #064559;
+            --light-mint: #E8F4EA;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        
+        header {
+            padding: 24px 0;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-placeholder {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--emetrics-green);
+        }
+        
+        .nav-links a {
+            margin-left: 32px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--emetrics-green);
+        }
+        
+        .hero {
+            background: linear-gradient(to right, white, var(--light-mint));
+            padding: 80px 0;
+            border-radius: 0 0 0 100px;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 64px;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .logo-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--deep-teal);
+            line-height: 1.2;
+        }
+        
+        .tagline {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--emetrics-green);
+            margin-bottom: 32px;
+            line-height: 1.3;
+        }
+        
+        .hero-description {
+            font-size: 18px;
+            margin-bottom: 32px;
+            max-width: 500px;
+            color: var(--moonrock);
+        }
+        
+        .waitlist-form {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            max-width: 500px;
+        }
+        
+        .waitlist-form input {
+            flex: 1;
+            padding: 16px;
+            border: 1px solid #D1D5DB;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+        }
+        
+        .waitlist-form input:focus {
+            outline: none;
+            border-color: var(--emetrics-blue);
+        }
+        
+        .waitlist-form button {
+            background-color: var(--bright-orange);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 32px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .waitlist-form button:hover {
+            background-color: #e09100;
+        }
+        
+        .form-note {
+            font-size: 14px;
+            color: var(--moonrock);
+            margin-bottom: 32px;
+        }
+        
+        .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--deep-teal);
+            margin-bottom: 48px;
+        }
+        
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .feature-icon {
+            background-color: var(--light-mint);
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--emetrics-green);
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--emetrics-blue);
+        }
+        
+        .feature-description {
+            color: var(--moonrock);
+        }
+        
+        .how-it-works {
+            padding: 80px 0;
+            background-color: var(--light-mint);
+            border-radius: 100px 0 0 0;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .step-number {
+            background-color: var(--emetrics-green);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+        
+        .step-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--deep-teal);
+        }
+        
+        .step-description {
+            color: var(--moonrock);
+        }
+        
+        .cta {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--deep-teal);
+            margin-bottom: 24px;
+        }
+        
+        .cta-description {
+            font-size: 18px;
+            color: var(--moonrock);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            background-color: var(--emetrics-green);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 32px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #2f7049;
+        }
+        
+        footer {
+            background-color: var(--deep-teal);
+            padding: 48px 0;
+            color: white;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-logo a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 20px;
+        }
+        
+        .footer-links a {
+            margin-left: 24px;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--bright-mango);
+        }
+        
+        .bright-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 32px;
+            padding-top: 32px;
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .copyright a {
+            color: var(--bright-mango);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 1024px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .logo-container {
+                width: 100%;
+                order: -1;
+                margin-bottom: 40px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+            
+            .tagline {
+                font-size: 24px;
+            }
+            
+            .waitlist-form {
+                flex-direction: column;
+            }
+            
+            .hero {
+                padding: 60px 0;
+                border-radius: 0;
+            }
+            
+            .how-it-works {
+                border-radius: 0;
+            }
+            
+            .container {
+                padding: 0 16px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+            
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .footer-links a {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-placeholder">Emetrics</div>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#waitlist">Join Waitlist</a>
+                <a href="https://brightsustainability.co.uk/" target="_blank">Bright</a>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Transform Financial Data Into Carbon Insights</h1>
+                <p class="tagline">Carbon accounting shouldn't be rocket science.</p>
+                <p class="hero-description">Emetrics helps businesses calculate, monitor, and manage their carbon emissions using your existing financial data - no environmental expertise required.</p>
+                <form class="waitlist-form" id="waitlist" action="https://formspree.io/f/xyzezgbr" method="POST">
+                    <input type="email" name="email" placeholder="Enter your email address" required>
+                    <button type="submit">Join Waitlist</button>
+                </form>
+                <p class="form-note">Be the first to know when we launch. No spam, ever.</p>
+            </div>
+            <div class="logo-container">
+                <!-- Logo placeholder -->
+                <p>HERO LOGO</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Emetrics</h2>
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Simple Data Import</h3>
+                    <p class="feature-description">Upload your financial data or connect directly to your accounting system for automatic emissions calculation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Comprehensive Coverage</h3>
+                    <p class="feature-description">Track Scope 1, 2, and 3 emissions with cost-based input-output methodology for complete carbon visibility.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Actionable Insights</h3>
+                    <p class="feature-description">Interactive dashboards highlight emission hotspots and provide data-driven recommendations for reduction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How Emetrics Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Import Your Data</h3>
+                    <p class="step-description">Upload your financial transactions or connect to your accounting system.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Automatic Categorization</h3>
+                    <p class="step-description">Our system analyzes and categorizes your transactions for emissions calculations.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Calculate Your Footprint</h3>
+                    <p class="step-description">We apply emissions factors to your data to generate your carbon footprint.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Refine & Improve</h3>
+                    <p class="step-description">Add supplier-specific and product-specific emissions data for greater accuracy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title">Ready to Simplify Your Carbon Accounting?</h2>
+            <p class="cta-description">Join the waitlist today and be the first to experience how Emetrics transforms financial data into carbon insights - without the complexity.</p>
+            <form action="https://formspree.io/f/xyzezgbr" method="POST" style="display: inline-block;">
+                <input type="email" name="email" placeholder="Enter your email address" required style="padding: 16px; border: 1px solid #D1D5DB; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 16px; margin-right: 16px; width: 300px;">
+                <button type="submit" class="cta-button">Join the Waitlist</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <a href="#">Emetrics</a>
+            </div>
+            <div class="footer-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#waitlist">Join Waitlist</a>
+                <a href="https://brightsustainability.co.uk/" target="_blank" class="bright-link">
+                    Part of the Bright family
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>&copy; 2025 Emetrics. All rights reserved. A <a href="https://brightsustainability.co.uk/" target="_blank">Bright Sustainability</a> product.</p>
+        </div>
+    </footer>
+</body>
+</html>
